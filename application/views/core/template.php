@@ -5,12 +5,12 @@
         <?php $this->load->view('core/header'); ?>
 	</head>
 	<body>
-		<div class="ui top fixed menu">
+		<div class="ui secondary pointing menu">
 			<?php $this->load->view('core/menu'); ?>
 		</div>
 
 		<!-- Contenedor principal -->
-    	<section class="ui container" style="padding-top: 55px;" id="contenedor_principal">
+    	<section class="ui container" id="contenedor_principal">
     		<?php $this->load->view($contenido_principal); ?>
     	</section>
 	</body>
