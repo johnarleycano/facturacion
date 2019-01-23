@@ -9,10 +9,18 @@
 <?php if(ENVIRONMENT === 'development') { ?>
 	<!-- jQuery -->
 	<script src="<?php echo base_url(); ?>js/jquery-3.3.1.js"></script>
+
+	<!-- Semantic UI -->
+	<script src="<?php echo base_url(); ?>js/semantic.js"></script>
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/semantic.css" />
 <?php } ?>
 
 <!-- Entorno de producción -->
 <?php if(ENVIRONMENT === 'production') { ?>
 	<!-- jQuery -->
 	<script src="<?php echo base_url(); ?>js/jquery-3.3.1.min.js"></script>
+
+	<!-- Semantic UI -->
+	<script src="<?php echo base_url(); ?>js/semantic.min.js"></script>
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/semantic.min.css" />
 <?php } ?>
