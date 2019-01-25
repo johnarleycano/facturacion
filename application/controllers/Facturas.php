@@ -39,6 +39,10 @@ class Facturas extends CI_Controller {
         $this->load->view('core/template', $this->data);
 	}
 
+    function prueba(){
+        echo "CI";
+    }
+
     /**
      * Actualización de registros en base de datos
      */

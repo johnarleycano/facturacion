@@ -93,9 +93,9 @@
 		// Recorrido de las facturas subidas
 		for (var item = 0; item < "<?php echo count($ids); ?>"; item++) {
 			var id = $(`#${item}`).val()
-			var factura = ajax(`${$("#url_base").val()}facturas/obtener`, {tipo: 'factura', id: id}, 'JSON')
+			var factura = ajax(`${$("#url").val()}/facturas/obtener`, {tipo: 'factura', id: id}, 'JSON')
 
-			cargar_factura(`${$("#url_base").val()}archivos/facturas/${factura.Nombre}`, id, item)
+			cargar_factura(`${$("#url_base").val()}/archivos/facturas/${factura.Nombre}`, id, item)
 		}
 
 

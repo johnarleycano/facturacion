@@ -15,7 +15,7 @@
 			    let valor = $(xml).find('cbc\\:PayableAmount, PayableAmount').first().text()
 
 			    // Se actualiza la factura en base de datos
-			    ajax(`${$("#url_base").val()}facturas/actualizar`, {'tipo': 'factura', 'id': id, 'datos': {Valor: valor}}, 'JSON')
+			    ajax(`${$("#url").val()}/facturas/actualizar`, {'tipo': 'factura', 'id': id, 'datos': {Valor: valor}}, 'JSON')
 			    
 			    // Se insertan los valores
 			    $(`#numero_factura${item}`).text(`Factura No. ${numero_factura}`)
@@ -37,7 +37,7 @@
 			imprimir(`Item ${item}`)
 
 			// Se actualiza la factura con el sector al que pertenece
-		    ajax(`${$("#url_base").val()}facturas/actualizar`, {'tipo': 'factura', 'id': $(`#${item}`).val(), 'datos': {Fk_Id_Sector: $(`#sector${item}`).val()}}, 'JSON')
+		    ajax(`${$("#url").val()}/facturas/actualizar`, {'tipo': 'factura', 'id': $(`#${item}`).val(), 'datos': {Fk_Id_Sector: $(`#sector${item}`).val()}}, 'JSON')
 			
 			// Recorrido de cada campo creado de la imputación
 			for (var contador = 1; contador <= $(`#contador_imputacion${item}`).val(); contador++) {
@@ -57,7 +57,7 @@
 		}
 		imprimir(datos)
 
-		ajax(`${$("#url").val()}facturas/insertar`, {tipo: 'factura_imputacion', "datos": datos}, 'HTML')
+		ajax(`${$("#url").val()}/facturas/insertar`, {tipo: 'factura_imputacion', "datos": datos}, 'HTML')
 
 		cerrar_modal()
 	}
@@ -94,12 +94,12 @@
 				archivos_xml.append(index, archivo)
 
 				// insertar_archivo
-				let subir_archivo = ajax_archivos(`${$("#url_base").val()}facturas/subir`, archivos_xml, "JSON")
+				let subir_archivo = ajax_archivos(`${$("#url").val()}/facturas/subir`, archivos_xml, "JSON")
 				
 				// Si se subió el archivo
 				if(subir_archivo){
 					// Se crea el registro de la factura en la base de datos
-					id_factura = ajax(`${$("#url_base").val()}facturas/insertar`, {tipo: 'factura', datos: {Nombre: `${nombre}.${extension}`}}, 'HTML')
+					id_factura = ajax(`${$("#url").val()}/facturas/insertar`, {tipo: 'factura', datos: {Nombre: `${nombre}.${extension}`}}, 'HTML')
 					ids.push(id_factura)
 
 	    			// imprimir("Cargado.")
@@ -108,7 +108,7 @@
 		})
 
 		// Se carga la interfaz con todas las facturas que se subieron
-		cargar_interfaz(`cont_modal`, `${$("#url_base").val()}facturas/cargar_interfaz`, {tipo: `facturas_crear`, ids: ids})
+		cargar_interfaz(`cont_modal`, `${$("#url").val()}/facturas/cargar_interfaz`, {tipo: `facturas_crear`, ids: ids})
 	}
 
 	$(document).ready(function(){
