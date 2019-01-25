@@ -27,6 +27,16 @@ Class Configuracion_model extends CI_Model{
             case "aplicacion":
                 return $this->db_configuracion->where("Pk_Id", $id)->get("aplicaciones")->row();
             break;
+
+            case "cuentas":
+                return $this->db->get("cuentas")->result();
+            break;
+
+            case "sectores":
+                return $this->db_configuracion
+                    ->order_by("Codigo")
+                    ->get("sectores")->result();
+            break;
         }
     }
 }

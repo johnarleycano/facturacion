@@ -33,3 +33,14 @@
 
 <!-- Estilos generales -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>css/estilos.css?<?php echo date('YmdHis'); ?>"; />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		// Inicialización de las listas desplegables
+		$('.ui.dropdown').dropdown({
+			message: {
+				noResults : 'Sin resultados.',
+			},
+		})
+	})
+</script>
