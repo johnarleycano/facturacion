@@ -97,6 +97,28 @@ class Facturas extends CI_Controller {
     }
 
     /**
+     * Elimina registros en base de datos
+     * 
+     * @return [boolean] true, false
+     */
+    function eliminar(){
+        //Se valida que la peticion venga mediante ajax y no mediante el navegador
+        if($this->input->is_ajax_request()){
+            // Datos por POST
+            $tipo = $this->input->post("tipo");
+
+            switch ($tipo) {
+                case 'factura':
+                    echo $this->facturas_model->eliminar($tipo, $this->input->post("datos"));
+                break;
+            }
+        }else{
+            //Si la peticion fue hecha mediante navegador, se redirecciona a la pagina de inicio
+            redirect('');
+        }
+    }
+
+    /**
      * Crea registros en base de datos
      * 
      * @return [void]

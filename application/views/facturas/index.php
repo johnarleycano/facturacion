@@ -1,6 +1,25 @@
 <div id="cont_facturas"></div>
 <div id="cont_modal"></div>
 
+<div id="modal_eliminar" class="ui basic modal">
+	<div class="ui icon header">
+		<i class="fa fa-trash fa-3x"></i><br>
+		Advertencia
+	</div>
+	<div class="content">
+		<p>Esta factura se eliminará y también toda su imputación presupeustal y RETE ICA configurados.</p>
+		<p>¿Está seguro?</p>
+	</div>
+	<div class="actions">
+		<div class="ui blue basic cancel inverted button">
+			<i class="fa fa-times"></i> Cancelar
+		</div>
+		<div class="ui red ok inverted button" onClick="javascript:eliminar()">
+			<i class="fa fa-check"></i> Si, Eliminar
+		</div>
+	</div>
+</div>
+
 <script type="text/javascript">
 	function cargar_factura(url, id, item)
 	{
@@ -31,6 +50,27 @@
 			    $(`#valor${item}`).text(formatear_numero(valor)).attr("data-valor", valor)
 		    }       
 		})
+	}
+
+	/**
+	 * Elimina el registro
+	 * @param  		{int} 			id 				Id de la factura
+	 * @return 		{boolean}    	true, false
+	 */
+	function eliminar(id = null)
+	{
+		// Si encuentra id
+		if(id) {
+			$("#id_factura").val(id)
+			$('#modal_eliminar').modal('show')
+			return false
+		}
+
+		// Se elimina el registro
+		ajax("<?php echo site_url('facturas/eliminar'); ?>", {"tipo": "factura", "datos": {"Pk_Id": $("#id_factura").val()}}, 'HTML')
+
+		// Carga de la itnerfaz
+		listar()
 	}
 
 	function guardar()

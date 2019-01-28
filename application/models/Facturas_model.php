@@ -17,6 +17,21 @@ Class Facturas_model extends CI_Model{
 	}
 
 	/**
+     * Elimina registros en base de datos
+     * 
+     * @param  [string] $tipo [Tipo de elemento a eliminar]
+     * @param  [int] $id   [Id de la base de datos]
+     * @return [boolean] true, false
+     */
+    function eliminar($tipo, $id){
+        switch ($tipo) {
+            case 'factura':
+                return $this->db->delete('facturas', $id);
+            break;
+        }
+    }
+
+	/**
      * Permite la inserción de datos en la base de datos 
      * 
      * @return [void]

@@ -1,3 +1,6 @@
+<!-- Input oculto con el id de factura -->
+<input type="hidden" id="id_factura">
+
 <div class="ui divided items">
 	<?php foreach ($this->facturas_model->obtener("facturas") as $factura){ ?>
 		<div class="item">
@@ -15,8 +18,8 @@
 				
 				<div class="extra">
 					<!-- ELiminar -->
-					<div class="ui right floated">
-						<a class="ui red label" onClick="javascript:eliminar(<?php echo $factura->Pk_Id; ?>)">
+					<div class="ui right floated" onClick="javascript:eliminar(<?php echo $factura->Pk_Id; ?>)">
+						<a class="ui red label">
 							<i class="fa fa-trash"></i>&nbsp;&nbsp;Eliminar
 						</a>
 					</div>
