@@ -10,15 +10,23 @@
 		    dataType: "xml" ,
 		    success: function(xml) {
 		    	// Se extraen los valores que se requieren
-			    let numero_factura = $(xml).find('cbc\\:ID, ID').first().text()
-			    let nombre_tercero = $(xml).find('cac\\:PartyName, PartyName').first().text()
+			    let numero = $(xml).find('cbc\\:ID, ID').first().text()
+			    let nombre_tercero = $.trim($(xml).find('cac\\:PartyName, PartyName').first().text())
 			    let valor = $(xml).find('cbc\\:PayableAmount, PayableAmount').first().text()
+			    let fecha_factura = $(xml).find('cbc\\:IssueDate, IssueDate').first().text()
+
+			    var datos = {
+			    	Nombre_Tercero: nombre_tercero,
+			    	Numero: numero,
+			    	Valor: valor,
+			    	Fecha_Factura: fecha_factura,
+			    }
 
 			    // Se actualiza la factura en base de datos
-			    ajax(`${$("#url").val()}/facturas/actualizar`, {'tipo': 'factura', 'id': id, 'datos': {Valor: valor}}, 'JSON')
+			    ajax(`${$("#url").val()}/facturas/actualizar`, {'tipo': 'factura', 'id': id, 'datos': datos}, 'JSON')
 			    
 			    // Se insertan los valores
-			    $(`#numero_factura${item}`).text(`Factura No. ${numero_factura}`)
+			    $(`#numero_factura${item}`).text(`Factura No. ${numero}`)
 			    $(`#nombre_tercero${item}`).text(`${item + 1}. ${nombre_tercero}`)
 			    $(`#valor${item}`).text(formatear_numero(valor)).attr("data-valor", valor)
 		    }       

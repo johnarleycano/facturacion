@@ -114,6 +114,9 @@
 
 		$('.ui.longer.modal').modal({
 			onHide: function(){
+				// Se recarga la interfaz
+				listar()
+
 	            $("#cargando").hide()
 	            $('.ui.longer.modal').remove()
         	}

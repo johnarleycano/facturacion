@@ -1,6 +1,22 @@
 <?php 
 Class Facturas_model extends CI_Model{
 	/**
+	 * Actualización en base de datos base de datos
+	 * @param  string $tipo Tipo de dato
+	 * @param  int $id   Identificador
+	 * @return array       Datos
+	 */
+	function actualizar($tipo, $id, $datos){
+		switch ($tipo) {
+			case 'factura':
+				return $this->db
+					->where("Pk_Id", $id)
+					->update("facturas", $datos);
+			break;
+		}
+	}
+
+	/**
      * Permite la inserción de datos en la base de datos 
      * 
      * @return [void]
@@ -21,22 +37,6 @@ Class Facturas_model extends CI_Model{
 	}
 
 	/**
-	 * Actualización en base de datos base de datos
-	 * @param  string $tipo Tipo de dato
-	 * @param  int $id   Identificador
-	 * @return array       Datos
-	 */
-	function actualizar($tipo, $id, $datos){
-		switch ($tipo) {
-			case 'factura':
-				return $this->db
-					->where("Pk_Id", $id)
-					->update("facturas", $datos);
-			break;
-		}
-	}
-
-	/**
 	 * Obtiene registros de base de datos
 	 * y los retorna a las vistas
 	 * 
@@ -50,6 +50,21 @@ Class Facturas_model extends CI_Model{
 		switch ($tipo) {
 			case "factura":
                 return $this->db->where("Pk_Id", $id)->get("facturas")->row();
+            break;
+
+			case "facturas":
+				$this->db
+                    ->select(array(
+                        'f.*',
+                        's.Codigo Sector'
+                        ))
+                    ->from('facturas f')
+                    ->join('configuracion.sectores s', 'f.Fk_Id_Sector = s.Pk_Id', 'left')
+                    ->order_by("f.Fecha_Factura", "DESC")
+                ;
+                
+                // return $this->db->get_compiled_select(); // string de la consulta
+                return $this->db->get()->result();
             break;
         }
 	}
