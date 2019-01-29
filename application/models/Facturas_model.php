@@ -75,7 +75,7 @@ Class Facturas_model extends CI_Model{
 				$this->db
                     ->select(array(
                         'f.*',
-                        's.Codigo Sector'
+                        's.Codigo Sector',
                         ))
                     ->from('facturas f')
                     ->join('configuracion.sectores s', 'f.Fk_Id_Sector = s.Pk_Id', 'left')
@@ -84,6 +84,16 @@ Class Facturas_model extends CI_Model{
                 
                 // return $this->db->get_compiled_select(); // string de la consulta
                 return $this->db->get()->result();
+            break;
+
+            case 'porcentaje_ica':
+				$sql = $this->db->select("Sum(Porcentaje) Porcentaje")->where("Fk_Id_Factura", $id)->get("facturas_ica")->row();
+                return $sql->Porcentaje;
+            break;
+
+            case 'porcentaje_imputacion':
+            	$sql = $this->db->select("Sum(Porcentaje) Porcentaje")->where("Fk_Id_Factura", $id)->get("facturas_imputacion")->row();
+                return $sql->Porcentaje;
             break;
         }
 	}
