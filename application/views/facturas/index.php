@@ -77,7 +77,8 @@
 	{
 		imprimir("Guardando...")
 
-		var datos = []
+		var datos_imputacion = []
+		var datos_ica = []
 		
 		// Recorrido de cada ítem de las facturas subidas
 		for (var item = 0; item < $("#total_items").val(); item++) {
@@ -98,14 +99,25 @@
 				var dato = {
 					"Fk_Id_Cuenta": $(`#cuenta_${item}_${contador}`).val(),
 					"Fk_Id_Factura": $(`#${item}`).val(),
-					"Porcentaje": $(`#porcentaje_${item}_${contador}`).val(),
+					"Porcentaje": $(`#porcentaje_imputacion_${item}_${contador}`).val(),
 				}
-				datos.push(dato)
+				datos_imputacion.push(dato)
+			}
+
+			// Recorrido de cada campo creado con la retención ICA
+			for (var contador = 1; contador <= $(`#contador_ica${item}`).val(); contador++) {
+				var dato = {
+					"Fk_Id_Municipio": $(`#municipio_${item}_${contador}`).val(),
+					"Fk_Id_Factura": $(`#${item}`).val(),
+					"Porcentaje": $(`#porcentaje_ica_${item}_${contador}`).val(),
+				}
+				datos_ica.push(dato)
 			}
 		}
-		imprimir(datos)
+		// imprimir(datos)
 
-		ajax(`${$("#url").val()}/facturas/insertar`, {tipo: 'factura_imputacion', "datos": datos}, 'HTML')
+		ajax(`${$("#url").val()}/facturas/insertar`, {tipo: 'factura_imputacion', "datos": datos_imputacion}, 'HTML')
+		ajax(`${$("#url").val()}/facturas/insertar`, {tipo: 'factura_ica', "datos": datos_ica}, 'HTML')
 
 		cerrar_modal()
 	}

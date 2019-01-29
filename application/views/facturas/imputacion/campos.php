@@ -14,7 +14,7 @@
 		<div class="two fields">
 			<div class="field <?php echo $item; ?>_<?php echo $contador; ?>">
 				<div class="ui right labeled input">
-					<input type="number" id="porcentaje_<?php echo $item; ?>_<?php echo $contador; ?>" data-item="<?php echo $item; ?>" min="0" max="100" class="error" placeholder="Porcentaje">
+					<input type="number" id="porcentaje_imputacion_<?php echo $item; ?>_<?php echo $contador; ?>" data-item="<?php echo $item; ?>" min="0" max="100" class="error" placeholder="Porcentaje">
 					<div class="ui basic label">%</div>
 				</div>
 			</div>
@@ -49,10 +49,10 @@
 			var porcentaje_total = 0
 			var valor_parcial = 0
 
-			$(`.${item}_${contador}`).removeClass("error")
+			// $(`.${item}_${contador}`).removeClass("error")
 
 			// Recorre los porcentajes de ese ítem
-			$(`input[id^="porcentaje_${item}"]`).each(function(){
+			$(`input[id^="porcentaje_imputacion_${item}"]`).each(function(){
 				// Se toma el porcentaje
 				porcentaje_parcial = parseInt($(this).val())
 

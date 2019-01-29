@@ -76,6 +76,10 @@ Class Configuracion_model extends CI_Model{
                 return ($adicional == "corto") ? "$mes_es $dia_num" : "$mes_es $dia_num, $anio_es" ;
             break;
 
+            case "municipios":
+                return $this->db_configuracion->order_by("Nombre")->get("municipios")->result();
+            break;
+
             case "sectores":
                 return $this->db_configuracion
                     ->order_by("Codigo")

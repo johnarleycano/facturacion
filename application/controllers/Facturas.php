@@ -82,6 +82,7 @@ class Facturas extends CI_Controller {
                 break;
 
                 case "facturas_ica":
+                    $this->data["item"] = $this->input->post("item");
                     $this->data["contador"] = $this->input->post("contador");
                     $this->load->view("facturas/ica/campos", $this->data);
                 break;
@@ -145,6 +146,10 @@ class Facturas extends CI_Controller {
                 break;
 
                 case 'factura_imputacion':
+                    echo $this->facturas_model->insertar($tipo, $datos);
+                break;
+
+                case 'factura_ica':
                     echo $this->facturas_model->insertar($tipo, $datos);
                 break;
             }

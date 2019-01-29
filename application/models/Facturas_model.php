@@ -48,6 +48,10 @@ Class Facturas_model extends CI_Model{
 			case 'factura_imputacion':
 				if($this->db->insert_batch('facturas_imputacion', $datos)) return true;
 			break;
+
+			case 'factura_ica':
+				if($this->db->insert_batch('facturas_ica', $datos)) return true;
+			break;
 		}
 	}
 
