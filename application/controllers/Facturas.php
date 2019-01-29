@@ -52,6 +52,9 @@ class Facturas extends CI_Controller {
             // Dependiendo del tipo
             switch ($tipo) {
                 case 'factura':
+                    // Se inserta el registro de logs enviando tipo de log y dato adicional si corresponde
+                    $this->logs_model->insertar(4, "Factura actualizada");
+
                     echo $this->facturas_model->actualizar($tipo, $this->input->post('id'), $datos);
                 break;
             }
@@ -109,6 +112,9 @@ class Facturas extends CI_Controller {
 
             switch ($tipo) {
                 case 'factura':
+                    // Se inserta el registro de logs enviando tipo de log y dato adicional si corresponde
+                    $this->logs_model->insertar(5, "Factura eliminada");
+
                     echo $this->facturas_model->eliminar($tipo, $this->input->post("datos"));
                 break;
             }
@@ -132,6 +138,9 @@ class Facturas extends CI_Controller {
 
             switch ($tipo) {
                 case 'factura':
+                    // Se inserta el registro de logs enviando tipo de log y dato adicional si corresponde
+                    $this->logs_model->insertar(3, "Factura creada");
+                    
                     echo $this->facturas_model->insertar($tipo, $datos);
                 break;
 

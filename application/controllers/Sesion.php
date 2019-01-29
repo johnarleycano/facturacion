@@ -25,6 +25,10 @@ class Sesion extends CI_Controller {
         $datos_sesion = json_decode($archivo, true);
 
         $this->session->set_userdata($datos_sesion);
+
+        // Se inserta el registro de logs enviando tipo de log y dato adicional si corresponde
+        $this->logs_model->insertar(1);
+                        
         redirect("");
     }
 
@@ -35,6 +39,9 @@ class Sesion extends CI_Controller {
 	 */
 	function cerrar()
 	{
+        // Se inserta el registro de logs enviando tipo de log y dato adicional si corresponde
+        $this->logs_model->insertar(2);
+        
 		// Sesión destruida
         $this->session->sess_destroy();
 	    
