@@ -12,7 +12,7 @@
 
 		<div class="field <?php echo $item; ?>_<?php echo $contador; ?>">
 			<div class="ui right labeled input">
-				<input type="number" id="porcentaje_imputacion_<?php echo $item; ?>_<?php echo $contador; ?>" data-item="<?php echo $item; ?>" min="0" max="100" class="error" placeholder="Porcentaje">
+				<input type="number" id="porcentaje_ica_<?php echo $item; ?>_<?php echo $contador; ?>" data-item="<?php echo $item; ?>" min="0" max="100" class="error" placeholder="Porcentaje">
 				<div class="ui basic label">%</div>
 			</div>
 		</div>
